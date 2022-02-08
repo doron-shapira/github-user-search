@@ -1,0 +1,84 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono&display=swap");
+body {
+  margin: 2rem;
+  background-color: #141c2f;
+  color: white;
+  font-family: 'Space Mono', monospace;
+}
+
+.title-and-theme-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+#theme-btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: .5rem;
+  height: 50px;
+  font-family: 'Space Mono', monospace;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  background-color: transparent;
+  color: white;
+  cursor: pointer;
+  border: none;
+}
+
+#theme-btn * {
+  -webkit-transform: translateY(4px);
+          transform: translateY(4px);
+}
+
+#theme-btn img {
+  width: 2rem;
+}
+
+.search-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: #1f2a48;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 20px;
+}
+
+.search-container img {
+  width: 30px;
+  -webkit-transform: translateY(25%);
+          transform: translateY(25%);
+}
+
+.search-container input {
+  -ms-flex-preferred-size: calc(100% - 5rem);
+      flex-basis: calc(100% - 5rem);
+  font-size: 1rem;
+  background-color: transparent;
+  border: none;
+  color: white;
+}
+
+.search-container button {
+  font-family: 'Space Mono', monospace;
+  font-size: 1rem;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #0079fe;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+/*# sourceMappingURL=style.css.map */
