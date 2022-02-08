@@ -15,7 +15,6 @@ body {
 }
 
 #theme-btn {
-    /* outline: 1px solid white; */
     display: flex;
     align-items: center;
     gap: .5rem;
@@ -30,7 +29,10 @@ body {
     border: none;
 }
 
+#theme-btn * {
+    transform: translateY(4px);
+}
+
 #theme-btn img {
     width: 2rem;
-    vertical-align: middle;
 }
