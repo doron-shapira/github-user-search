@@ -45,7 +45,7 @@ body {
     }
     input {
         width: calc(100% - 5rem);
-        max-width: calc(100% - 5rem);
+        // max-width: 100% - 5rem;
         font-size: 1rem;
         background-color: transparent;
         border: none;
@@ -60,5 +60,45 @@ body {
         border: none;
         color: white;
         cursor: pointer;
+    }
+}
+
+.user-container {
+    background-color: #1f2a48;
+    border-radius: 20px;
+    padding: 1rem;
+    margin-top: 1rem;
+    #pug {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        float: left;
+    }
+    .info-container {
+        background-color: #141c2f;
+        text-align: center;
+        display: flex;
+        justify-content: space-around;
+        padding: 1rem;
+        border-radius: 20px;
+        p {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+    ul {
+        list-style: none;
+        padding: 0;
+        li {
+            margin-bottom: 10px;
+            img { 
+                width: 30px;
+                vertical-align: middle;
+            }
+            a { 
+                color: white;
+                text-decoration: none;
+            }
+        }
     }
 }
