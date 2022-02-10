@@ -68,11 +68,13 @@ body {
     border-radius: 20px;
     padding: 1rem;
     margin-top: 1rem;
+    h2 { margin-top: 0; }
     #pug {
         width: 140px;
         height: 140px;
         border-radius: 50%;
         float: left;
+        margin-right: 1rem;
     }
     .info-container {
         background-color: #141c2f;

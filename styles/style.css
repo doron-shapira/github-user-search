@@ -88,11 +88,16 @@ body {
   margin-top: 1rem;
 }
 
+.user-container h2 {
+  margin-top: 0;
+}
+
 .user-container #pug {
   width: 140px;
   height: 140px;
   border-radius: 50%;
   float: left;
+  margin-right: 1rem;
 }
 
 .user-container .info-container {
