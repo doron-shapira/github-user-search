@@ -79,6 +79,16 @@ body {
   border: none;
   color: white;
   cursor: pointer;
+  -webkit-transition: all .1s;
+  transition: all .1s;
+}
+
+.search-container button:hover {
+  background-color: #005abb;
+}
+
+.search-container button:active {
+  background-color: #004792;
 }
 
 .user-container {
@@ -88,16 +98,25 @@ body {
   margin-top: 1rem;
 }
 
-.user-container h2 {
-  margin-top: 0;
+.user-container .initials-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1rem;
+}
+
+.user-container h3 {
+  font-weight: 100;
+  color: #7ebcff;
 }
 
 .user-container #pug {
-  width: 140px;
-  height: 140px;
+  width: 110px;
+  height: 110px;
   border-radius: 50%;
-  float: left;
-  margin-right: 1rem;
 }
 
 .user-container .info-container {
@@ -120,6 +139,10 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+}
+
+.user-container .info-container p span:nth-child(2) {
+  font-weight: 600;
 }
 
 .user-container ul {
