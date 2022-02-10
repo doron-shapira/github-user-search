@@ -37,15 +37,16 @@ body {
     display: flex;
     background-color: #1f2a48;
     padding: 1rem;
+    margin: 0 auto;
     margin-top: 1rem;
     border-radius: 20px;
+    max-width: 40rem;
     img { 
         width: 30px;
         transform: translateY(25%);
     }
     input {
         width: calc(100% - 5rem);
-        // max-width: 100% - 5rem;
         font-size: 1rem;
         background-color: transparent;
         border: none;
@@ -70,7 +71,9 @@ body {
     background-color: #1f2a48;
     border-radius: 20px;
     padding: 1rem;
+    margin: 0 auto;
     margin-top: 1rem;
+    max-width: 40rem;
     .initials-container {
         display: flex;
         align-items: center;
