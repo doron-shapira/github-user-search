@@ -7,16 +7,16 @@ interface UserInterface {
     creationDate: string
     image: string
     bio: string
-    repos: number
-    followers: number
-    following: number
+    repos: string
+    followers: string
+    following: string
     location: string
     github: string
     twitter: string
     company: string
 }
 
-function fetchUser(user: string): void {
+function handleUser(user: string): void {
     if (user !== "")
         fetch(`https://api.github.com/users/${user}`)
             .then(response => response.json())
@@ -36,12 +36,41 @@ function fetchUser(user: string): void {
                     company: data.company
                 }
                 console.log(user)
+
+                // Setting the fetched data to HTML DOM
+                document.querySelector('h2')!.textContent = user.name
+                document.querySelector('h3')!.textContent = `@${user.userName}`
+
+                let cakeDay: Date | string = new Date(user.creationDate)
+                cakeDay = cakeDay.toLocaleDateString('en-us', { year: 'numeric', month: 'short', day: 'numeric' })
+                document.querySelector('.names-and-date p')!.textContent = `Joined ${cakeDay}`;
+
+                (<HTMLImageElement>document.getElementById('pug')).src = user.image
+                document.getElementById('bio')!.textContent = user.bio
+                document.getElementById('repos')!.textContent = user.repos
+                document.getElementById('followers')!.textContent = user.followers
+                document.getElementById('following')!.textContent = user.following
+                document.getElementById('location')!.textContent = user.location
+
+                document.getElementById('github')!.textContent = user.github;
+                (<HTMLAnchorElement>document.getElementById('github')).href = user.github
+
+                if (user.twitter) {
+                    document.getElementById('twitter')!.textContent = user.twitter;
+                    (<HTMLAnchorElement>document.getElementById('twitter')).href = `https://twitter.com/${user.twitter}`
+                }
+                else {
+                    document.getElementById('twitter')!.textContent = 'Not Available';
+                    (<HTMLAnchorElement>document.getElementById('twitter')).href = '#'
+                }
+
+                document.getElementById('company')!.textContent = user.company ? user.company : 'Not Available'
             })
 }
 
-searchButton.addEventListener('click', () => fetchUser(input.value))
+searchButton.addEventListener('click', () => handleUser(input.value))
 
 input.addEventListener('keydown', event => {
     if (event.key === 'Enter')
-        fetchUser(input.value)
+        handleUser(input.value)
 })
