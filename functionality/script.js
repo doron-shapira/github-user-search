@@ -10,6 +10,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 const searchButton = document.querySelector('.search-container button');
 const input = document.getElementById('search-input');
+const themeButton = document.getElementById('theme-btn');
+const icons = document.querySelectorAll('ul img');
+let isDark = true;
+themeButton.addEventListener('click', () => handleTheme());
 searchButton.addEventListener('click', () => handleUser(input.value));
 input.addEventListener('keydown', event => event.key === 'Enter' && handleUser(input.value));
 function handleUser(user) {
@@ -60,4 +64,41 @@ function handleUser(user) {
             alert('User Not Found!');
     }))
         .catch(err => alert(err));
+}
+function handleTheme() {
+    if (isDark) {
+        isDark = false;
+        document.querySelector('body').style.backgroundColor = 'white';
+        document.querySelector('body').style.color = 'black';
+        themeButton.style.color = 'black';
+        document.querySelector('#theme-btn span').textContent = 'DARK';
+        document.getElementById('theme-icon').src = 'assets/moon-icon.svg';
+        document.getElementById('theme-icon').alt = 'moon-icon';
+        document.querySelector('.search-container').style.backgroundColor = 'rgb(206, 206, 206)';
+        document.querySelector('.search-container input').style.color = 'black';
+        document.querySelector('.user-container').style.backgroundColor = 'rgb(206, 206, 206)';
+        document.querySelector('h3').style.color = '#5683b4';
+        document.getElementById('github').style.color = 'black';
+        document.getElementById('twitter').style.color = 'black';
+        document.querySelector('.info-container').style.backgroundColor = 'rgb(144, 144, 144)';
+        icons.forEach(icon => icon.style.filter = 'invert(100%) sepia(100%) saturate(2%) hue-rotate(98deg) brightness(109%) contrast(100%)');
+    }
+    else {
+        isDark = true;
+        document.querySelector('body').style.backgroundColor = '#141c2f';
+        document.querySelector('body').style.color = 'white';
+        themeButton.style.color = 'white';
+        document.querySelector('#theme-btn span').textContent = 'LIGHT';
+        document.getElementById('theme-icon').src = 'assets/sun-icon.svg';
+        document.getElementById('theme-icon').alt = 'sun-icon';
+        document.querySelector('.search-container').style.backgroundColor = '#1f2a48';
+        document.querySelector('.search-container input').style.color = 'white';
+        document.querySelector('.user-container').style.backgroundColor = '#1f2a48';
+        document.querySelector('h3').style.color = '#7ebcff';
+        document.querySelector('a').style.color = 'white';
+        document.getElementById('github').style.color = 'white';
+        document.getElementById('twitter').style.color = 'white';
+        document.querySelector('.info-container').style.backgroundColor = '#141c2f';
+        icons.forEach(icon => icon.style.filter = 'unset');
+    }
 }
