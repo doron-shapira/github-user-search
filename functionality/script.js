@@ -1,11 +1,22 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 const searchButton = document.querySelector('.search-container button');
 const input = document.getElementById('search-input');
+searchButton.addEventListener('click', () => handleUser(input.value));
+input.addEventListener('keydown', event => event.key === 'Enter' && handleUser(input.value));
 function handleUser(user) {
-    if (user !== "")
-        fetch(`https://api.github.com/users/${user}`)
-            .then(response => response.json())
-            .then(data => {
+    fetch(`https://api.github.com/users/${user}`)
+        .then((response) => __awaiter(this, void 0, void 0, function* () {
+        if (response.ok) {
+            const data = yield response.json();
             const user = {
                 name: data.name,
                 userName: data.login,
@@ -32,7 +43,7 @@ function handleUser(user) {
             document.getElementById('repos').textContent = user.repos;
             document.getElementById('followers').textContent = user.followers;
             document.getElementById('following').textContent = user.following;
-            document.getElementById('location').textContent = user.location;
+            document.getElementById('location').textContent = user.location ? user.location : 'Not Available';
             document.getElementById('github').textContent = user.github;
             document.getElementById('github').href = user.github;
             if (user.twitter) {
@@ -44,10 +55,9 @@ function handleUser(user) {
                 document.getElementById('twitter').href = '#';
             }
             document.getElementById('company').textContent = user.company ? user.company : 'Not Available';
-        });
+        }
+        else
+            alert('User Not Found!');
+    }))
+        .catch(err => alert(err));
 }
-searchButton.addEventListener('click', () => handleUser(input.value));
-input.addEventListener('keydown', event => {
-    if (event.key === 'Enter')
-        handleUser(input.value);
-});

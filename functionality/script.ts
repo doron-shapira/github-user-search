@@ -1,6 +1,10 @@
 const searchButton = document.querySelector('.search-container button') as HTMLButtonElement
 const input = document.getElementById('search-input') as HTMLInputElement
 
+searchButton.addEventListener('click', () => handleUser(input.value))
+
+input.addEventListener('keydown', event => event.key === 'Enter' && handleUser(input.value))
+
 interface UserInterface {
     name: string
     userName: string
@@ -17,10 +21,11 @@ interface UserInterface {
 }
 
 function handleUser(user: string): void {
-    if (user !== "")
-        fetch(`https://api.github.com/users/${user}`)
-            .then(response => response.json())
-            .then(data => {
+    fetch(`https://api.github.com/users/${user}`)
+        .then(async response => {
+            if (response.ok) {
+                const data = await response.json()
+                
                 const user: UserInterface = {
                     name: data.name,
                     userName: data.login,
@@ -50,7 +55,7 @@ function handleUser(user: string): void {
                 document.getElementById('repos')!.textContent = user.repos
                 document.getElementById('followers')!.textContent = user.followers
                 document.getElementById('following')!.textContent = user.following
-                document.getElementById('location')!.textContent = user.location
+                document.getElementById('location')!.textContent = user.location ? user.location : 'Not Available'
 
                 document.getElementById('github')!.textContent = user.github;
                 (<HTMLAnchorElement>document.getElementById('github')).href = user.github
@@ -65,12 +70,8 @@ function handleUser(user: string): void {
                 }
 
                 document.getElementById('company')!.textContent = user.company ? user.company : 'Not Available'
-            })
+            }
+            else alert('User Not Found!')
+        })
+        .catch(err => alert(err))    
 }
-
-searchButton.addEventListener('click', () => handleUser(input.value))
-
-input.addEventListener('keydown', event => {
-    if (event.key === 'Enter')
-        handleUser(input.value)
-})
